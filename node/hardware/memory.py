@@ -1,4 +1,3 @@
-import cpuinfo
 import json
 import psutil
 
