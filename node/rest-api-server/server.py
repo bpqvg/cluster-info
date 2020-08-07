@@ -136,6 +136,22 @@ def rest_get_pid_exists():
     return json.dumps(json.loads(local_processes))
 
 
+# Flask. Rest api. Sensors
+@api.route('/sensors/get_sensors_temperatures', methods=['GET'])
+def rest_get_sensors_temperatures():
+    local_sensors = sensors.Sensors().get_sensors_temperatures()
+    return json.dumps(json.loads(local_sensors))
+
+@api.route('/sensors/get_sensors_fans', methods=['GET'])
+def rest_get_sensors_fans():
+    local_sensors = sensors.Sensors().get_sensors_fans()
+    return json.dumps(json.loads(local_sensors))
+
+@api.route('/sensors/get_sensors_battery', methods=['GET'])
+def rest_get_sensors_battery():
+    local_sensors = sensors.Sensors().get_sensors_battery()
+    return json.dumps(json.loads(local_sensors))
+
 
 
 
