@@ -63,7 +63,7 @@ def rest_get_disk_partitions():
 @api.route('/disks/get_disk_usage', methods=['GET'])
 def rest_get_disk_usage():
     arg_path = request.args.get('path')
-    print(arg_path)
+    #print(arg_path)
     local_disks = disks.Disks().get_disk_usage(path=arg_path)
     return json.dumps(json.loads(local_disks))
 
@@ -118,6 +118,22 @@ def rest_get_users():
     return json.dumps(json.loads(local_othersysteminfo))
 
 
+# Flask. Rest api. Processes
+@api.route('/processes/get_pids', methods=['GET'])
+def rest_get_pids():
+    local_processes = processes.Processes().get_pids()
+    return json.dumps(json.loads(local_processes))
+
+@api.route('/processes/get_process_iter', methods=['GET'])
+def rest_get_process_iter():
+    local_processes = processes.Processes().get_process_iter()
+    return json.dumps(json.loads(local_processes))
+
+@api.route('/processes/get_pid_exists', methods=['GET'])
+def rest_get_pid_exists():
+    arg_pid = int(request.args.get('pid'))
+    local_processes = processes.Processes().get_pid_exists(pid=arg_pid)
+    return json.dumps(json.loads(local_processes))
 
 
 
