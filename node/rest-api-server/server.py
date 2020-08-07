@@ -11,6 +11,7 @@ api = Flask(__name__)
 # Init external libs/modules
 cpu = imp.load_source('cpu', hardware_libs_dir_path+"cpu.py")
 disks = imp.load_source('disks', hardware_libs_dir_path+"disks.py")
+memory = imp.load_source('memory', hardware_libs_dir_path+"memory.py")
 
 # Flask. Rest api. Cpu
 @api.route('/cpu/get_cpu_info', methods=['GET'])
@@ -67,8 +68,15 @@ def rest_get_disk_io_counters():
     return json.dumps(json.loads(local_disks))
 
 # Flask. Rest api. Memory
+@api.route('/memory/get_virt_memory', methods=['GET'])
+def rest_get_virt_memory():
+    local_memory = memory.Memory().get_virt_memory()
+    return json.dumps(json.loads(local_memory))
 
-
+@api.route('/memory/get_swap_memory', methods=['GET'])
+def rest_get_swap_memory():
+    local_memory = memory.Memory().get_swap_memory()
+    return json.dumps(json.loads(local_memory))
 
 
 
