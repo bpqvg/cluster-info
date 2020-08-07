@@ -24,7 +24,7 @@ class Disks:
             "free": float('{:.3f}'.format(disk_usage.free / 1024 / 1024 / 1024)),
             "percent": disk_usage.percent,
         }
-        return disk_usage_o
+        return json.dumps(disk_usage_o)
     def get_disk_io_counters(self):
         disk_io_counters = psutil.disk_io_counters(perdisk=True)
         disk_io_counters_o = []
@@ -45,3 +45,6 @@ class Disks:
             }
             disk_io_counters_o.append(disk_io_counter)
         return json.dumps(disk_io_counters_o)
+
+# disks = Disks()
+# print(disks.get_disk_usage('/'))
