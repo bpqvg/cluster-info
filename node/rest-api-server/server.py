@@ -12,6 +12,11 @@ api = Flask(__name__)
 cpu = imp.load_source('cpu', hardware_libs_dir_path+"cpu.py")
 disks = imp.load_source('disks', hardware_libs_dir_path+"disks.py")
 memory = imp.load_source('memory', hardware_libs_dir_path+"memory.py")
+network = imp.load_source('network', hardware_libs_dir_path+"network.py")
+othersysteminfo = imp.load_source('othersysteminfo', hardware_libs_dir_path+"othersysteminfo.py")
+processes = imp.load_source('processes', hardware_libs_dir_path+"processes.py")
+sensors = imp.load_source('sensors', hardware_libs_dir_path+"sensors.py")
+
 
 # Flask. Rest api. Cpu
 @api.route('/cpu/get_cpu_info', methods=['GET'])
@@ -77,6 +82,31 @@ def rest_get_virt_memory():
 def rest_get_swap_memory():
     local_memory = memory.Memory().get_swap_memory()
     return json.dumps(json.loads(local_memory))
+
+
+# Flask. Rest api. Network
+@api.route('/network/get_net_io_counters', methods=['GET'])
+def rest_get_net_io_counters():
+    local_network = network.Network().get_net_io_counters()
+    return json.dumps(json.loads(local_network))
+
+@api.route('/network/get_net_connections', methods=['GET'])
+def rest_get_net_connections():
+    local_network = network.Network().get_net_connections()
+    return json.dumps(json.loads(local_network))
+
+@api.route('/network/get_net_if_addrs', methods=['GET'])
+def rest_get_net_if_addrs():
+    local_network = network.Network().get_net_if_addrs()
+    return json.dumps(json.loads(local_network))
+
+@api.route('/network/get_net_if_stats', methods=['GET'])
+def rest_get_net_if_stats():
+    local_network = network.Network().get_net_if_stats()
+    return json.dumps(json.loads(local_network))
+
+
+
 
 
 
