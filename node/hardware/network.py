@@ -5,7 +5,7 @@ class Network:
     def __init__(self):
         pass
     def get_net_io_counters(self):
-        net_io_counters = psutil.net_io_counters(pernic=True);
+        net_io_counters = psutil.net_io_counters(pernic=True)
         net_io_counters_o = []
         for key, val in net_io_counters.items():
             val_o = {
