@@ -8,7 +8,16 @@ class Cpu:
     def get_cpu_info(self):
         return cpuinfo.get_cpu_info_json()
     def get_cpu_percent(self):
-        return psutil.cpu_percent(interval=1, percpu=True)
+        cpu_percent = psutil.cpu_percent(interval=1, percpu=True)
+        cpu_percent_o = []
+        count = 1
+        for cpu_percent_core in cpu_percent:
+            cpu_percent_core_o = {
+                "core {}".format(count): cpu_percent_core
+            }
+            cpu_percent_o.append(cpu_percent_core_o)
+            count += 1
+        return json.dumps(cpu_percent_o)
     def get_cpu_freq(self):
         freq = psutil.cpu_freq()
         freq_o = {
@@ -31,7 +40,10 @@ class Cpu:
         count2 = len(psutil.Process().cpu_affinity())
         if count2 > count:
             count = count2
-        return count
+        count_o = {
+            "count": count
+        }
+        return json.dumps(count_o)
     def get_cpu_times_percent(self):
         times_percent = psutil.cpu_times_percent()
         times_percent_o = {
