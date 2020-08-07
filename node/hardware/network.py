@@ -66,6 +66,3 @@ class Network:
             }
             net_if_stats_o.append({key: val_o})
         return json.dumps(net_if_stats_o)
-
-network = Network()
-print(network.get_net_if_stats())
