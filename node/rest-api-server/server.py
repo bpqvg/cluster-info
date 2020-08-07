@@ -106,6 +106,18 @@ def rest_get_net_if_stats():
     return json.dumps(json.loads(local_network))
 
 
+# Flask. Rest api. OtherSystemInfo
+@api.route('/othersysteminfo/get_boot_time', methods=['GET'])
+def rest_get_boot_time():
+    local_othersysteminfo = othersysteminfo.OtherSystemInfo().get_boot_time()
+    return json.dumps(json.loads(local_othersysteminfo))
+
+@api.route('/othersysteminfo/get_users', methods=['GET'])
+def rest_get_users():
+    local_othersysteminfo = othersysteminfo.OtherSystemInfo().get_users()
+    return json.dumps(json.loads(local_othersysteminfo))
+
+
 
 
 
