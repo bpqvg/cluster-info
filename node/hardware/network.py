@@ -37,6 +37,35 @@ class Network:
             }
             net_connections_o.append(net_connection_o)
         return json.dumps(net_connections_o)
+    def get_net_if_addrs(self):
+        net_if_addrs = psutil.net_if_addrs()
+        net_if_addrs_o = []
+        for key, val in net_if_addrs.items():
+            #net_if_addr_o = []
+            val_o = []
+            for net_if_addr in val:
+                net_if_addr_o = {
+                    "family": net_if_addr.family,
+                    "address": net_if_addr.address,
+                    "netmask": net_if_addr.netmask,
+                    "broadcast": net_if_addr.broadcast,
+                    "ptp": net_if_addr.ptp
+                }
+                val_o.append(net_if_addr_o)
+            net_if_addrs_o.append({key: val_o})
+        return json.dumps(net_if_addrs_o)
+    def get_net_if_stats(self):
+        net_if_stats = psutil.net_if_stats()
+        net_if_stats_o = []
+        for key, val in net_if_stats.items():
+            val_o = {
+                "isup:": val.isup,
+                "duplex": val.duplex,
+                "speed": val.speed,
+                "mtu": val.mtu
+            }
+            net_if_stats_o.append({key: val_o})
+        return json.dumps(net_if_stats_o)
 
 network = Network()
-print(network.get_net_connections())
+print(network.get_net_if_stats())
