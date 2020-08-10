@@ -44,11 +44,11 @@ class AllInfo:
         self.all_cpu_info = json.dumps(all_cpu_info_o)
     def get_all_disks_info(self):
         disk_partitions = disks.Disks().get_disk_partitions()
-        disk_usage = disks.Disks().get_disk_usage("/")
+        disks_usage = disks.Disks().get_disks_usage()
         disk_io_counters = disks.Disks().get_disk_io_counters()
         all_disks_info_o = {
             "disk_partitions": json.loads(disk_partitions),
-            "disk_usage": json.loads(disk_usage),
+            "disks_usage": json.loads(disks_usage),
             "disk_io_counters": json.loads(disk_io_counters)
         }
         self.all_disks_info = json.dumps(all_disks_info_o)
@@ -101,4 +101,4 @@ class AllInfo:
         self.all_sensors_info = json.dumps(all_sensors_info_o)
 
 # allinfo = AllInfo()
-# print(allinfo.all_sensors_info)
+# print(allinfo.all_disks_info)
