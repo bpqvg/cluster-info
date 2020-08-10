@@ -252,14 +252,3 @@ def rest_get_sensors_battery():
 
 if __name__ == "__main__":
     api.run(host='0.0.0.0', port=55802)
-
-
-
-
-
-<<<<<<< HEAD
-if __name__ == "__main__":
-    api.run(host='0.0.0.0', port=55802)
-=======
-
->>>>>>> 46e5429c4d4e355bb85e5b6094ef4142be64ce2c
