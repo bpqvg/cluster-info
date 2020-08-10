@@ -16,6 +16,7 @@ network = imp.load_source('network', hardware_libs_dir_path+"network.py")
 othersysteminfo = imp.load_source('othersysteminfo', hardware_libs_dir_path+"othersysteminfo.py")
 processes = imp.load_source('processes', hardware_libs_dir_path+"processes.py")
 sensors = imp.load_source('sensors', hardware_libs_dir_path+"sensors.py")
+allinfo = imp.load_source('allinfo', current_dir_path+"/allinfo.py")
 
 # Flask. Rest api. Methods
 # cpu_methods_list = {
@@ -86,6 +87,12 @@ methods_list = {
 @api.route('/', methods=['GET'])
 def rest_main_page():
     return json.dumps(methods_list)
+
+# Flask. Rest api. AllInfo page
+@api.route('/allinfo', methods=['GET'])
+def rest_allinfo_page():
+    local_allinfo = allinfo.AllInfo()
+    return local_allinfo.get_allinfo()
 
 # Flask. Rest api. Cpu
 @api.route('/cpu', methods=['GET'])
