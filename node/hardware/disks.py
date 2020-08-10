@@ -25,6 +25,12 @@ class Disks:
             "percent": disk_usage.percent,
         }
         return json.dumps(disk_usage_o)
+    def get_disks_usage(self):
+        disks_usage = []
+        for disk_partition in psutil.disk_partitions():
+            mountpoint = disk_partition.mountpoint
+            disks_usage.append({mountpoint: json.loads(self.get_disk_usage(mountpoint))})
+        return json.dumps(disks_usage)
     def get_disk_io_counters(self):
         disk_io_counters = psutil.disk_io_counters(perdisk=True)
         disk_io_counters_o = []
@@ -47,4 +53,4 @@ class Disks:
         return json.dumps(disk_io_counters_o)
 
 # disks = Disks()
-# print(disks.get_disk_usage('/'))
+# print(disks.get_disks_usage())
