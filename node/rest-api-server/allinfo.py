@@ -104,7 +104,7 @@ class AllInfo:
             "cpu": json.loads(self.all_cpu_info),
             "disks": json.loads(self.all_disks_info),
             "memory": json.loads(self.all_memory_info),
-            "network": json.loads(self.all_memory_info),
+            "network": json.loads(self.all_network_info),
             "othersysteminfo": json.loads(self.all_othersysteminfo_info),
             "processes": json.loads(self.all_processes_info),
             "sensors": json.loads(self.all_sensors_info)
