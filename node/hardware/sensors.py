@@ -38,10 +38,18 @@ class Sensors:
             mm, ss = divmod(secs, 60)
             hh, mm = divmod(mm, 60)
             return "%d:%02d:%02d" % (hh, mm, ss)
-        sensors_battery_o = {
-            "percent": sensors_battery.percent,
-            "secsleft": sensors_battery.secsleft,
-            "power_plugged": sensors_battery.power_plugged,
-            "timeleft": secs2hours(sensors_battery.secsleft)
-        }
+        try:
+            sensors_battery_o = {
+                "percent": sensors_battery.percent,
+                "secsleft": sensors_battery.secsleft,
+                "power_plugged": sensors_battery.power_plugged,
+                "timeleft": secs2hours(sensors_battery.secsleft)
+            }
+        except:
+            sensors_battery_o = {
+                "percent": None,
+                "secsleft": None,
+                "power_plugged": None,
+                "timeleft": None
+            }
         return json.dumps(sensors_battery_o)
